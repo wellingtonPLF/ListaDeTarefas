@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <TextView
+
+        android:gravity="center"
+        android:textSize="32sp"
+        android:textColor="@android:color/black"
+        android:text="Tarefas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </TextView>
+    <ListView
+        android:paddingTop="10sp"
+        android:id="@+id/lvTarefas"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+    <Button
+        android:id="@+id/btCadastrar"
+        android:textColorHint="@android:color/black"
+        android:background="@android:color/holo_blue_dark"
+        android:hint="Cadastrar"
+        android:textSize="22sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </Button>
+</LinearLayout>
