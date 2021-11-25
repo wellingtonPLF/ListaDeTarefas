@@ -11,7 +11,7 @@ import android.widget.TextView
 
 class Base_Adapter(private var context: Context, private var listaT : ArrayList<ListaDeTarefas>) : BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val listaDT = this.listaT.get(position)  //Image: ic_launcher_background
+        val listaDT = this.listaT.get(position)
         val view_ : View
 
         if (convertView == null){
@@ -25,7 +25,8 @@ class Base_Adapter(private var context: Context, private var listaT : ArrayList<
         val tvNome = view_.findViewById<TextView>(R.id.tvNamed)
         val tvDescr = view_.findViewById<TextView>(R.id.tvDescr)
 
-        val img = context.resources.getIdentifier(listaDT.getImage(), "drawable", context.packageName) //Image: ic_launcher_background
+        //Image: ic_launcher_background
+        val img = context.resources.getIdentifier(listaDT.getImage(), "drawable", context.packageName)
         ivFoto.setImageResource(img)
         tvNome.text = listaDT.getNome()
         tvDescr.text = listaDT.getDescr()

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".tarefa">
+    tools:context=".Tarefa">
 
     <TextView
         android:textColor="@android:color/black"
@@ -54,7 +54,7 @@
             <EditText
                 android:id="@+id/etStatus"
                 android:textColor="@color/colorPrimaryDark"
-                android:text="  ABERTO"
+                android:text="ABERTO"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </EditText>

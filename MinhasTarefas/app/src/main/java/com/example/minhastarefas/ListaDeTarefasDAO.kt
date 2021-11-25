@@ -15,6 +15,7 @@ class ListaDeTarefasDAO {
         cv.put("imagem", tarefa.getImage())
         cv.put("nome", tarefa.getNome())
         cv.put("descricao", tarefa.getDescr())
+        cv.put("status", tarefa.getStatus())
 
         this.banco.writableDatabase.insert("tarefas", null, cv)
     }
@@ -27,28 +28,30 @@ class ListaDeTarefasDAO {
         return c.count
     }
 
-    fun select(): ArrayList<ListaDeTarefas>{
+    fun getAll(): ArrayList<ListaDeTarefas>{
         val lista = ArrayList<ListaDeTarefas>()
         val banco = this.banco.readableDatabase
-        val colunas = arrayOf("id", "imagem","nome", "descricao")
+        val colunas = arrayOf("id", "imagem", "nome", "descricao", "status")
         val c = banco.query("tarefas", colunas, null, null, null, null,null)
 
-        c.moveToFirst()
-        do {
-            var id = c.getInt(c.getColumnIndex("id"))
-            var imagem = c.getString(c.getColumnIndex("imagem"))
-            var nome = c.getString(c.getColumnIndex("nome"))
-            var descr = c.getString(c.getColumnIndex("descricao"))
-            lista.add(ListaDeTarefas(id, imagem, nome, descr))
-        }while(c.moveToNext())
-
+        if (count() > 0){
+            c.moveToFirst()
+            do {
+                var id = c.getInt(c.getColumnIndex("id"))
+                var imagem = c.getString(c.getColumnIndex("imagem"))
+                var nome = c.getString(c.getColumnIndex("nome"))
+                var descr = c.getString(c.getColumnIndex("descricao"))
+                var status = c.getString(c.getColumnIndex("status"))
+                lista.add(ListaDeTarefas(id, imagem, nome, descr, status))
+            }while(c.moveToNext())
+        }
         return lista
     }
 
     fun get(id: Int) : ListaDeTarefas?{
         var result : ListaDeTarefas
         val banco = this.banco.readableDatabase
-        val colunas = arrayOf("id", "imagem","nome", "descricao")
+        val colunas = arrayOf("id", "imagem","nome", "descricao", "status")
         val c = banco.query("tarefas", colunas, null, null, null, null,null)
         c.moveToFirst()
         do {
@@ -56,8 +59,9 @@ class ListaDeTarefasDAO {
             var imagem = c.getString(c.getColumnIndex("imagem"))
             var nome = c.getString(c.getColumnIndex("nome"))
             var descr = c.getString(c.getColumnIndex("descricao"))
+            var status = c.getString(c.getColumnIndex("status"))
             if(id == pk){
-                result = ListaDeTarefas(pk, imagem, nome, descr);
+                result = ListaDeTarefas(pk, imagem, nome, descr, status);
                 return result
             }
         }while(c.moveToNext())
@@ -76,7 +80,8 @@ class ListaDeTarefasDAO {
         val wherep = arrayOf(tarefa.getId().toString())
         cv.put("imagem", tarefa.getImage())
         cv.put("nome", tarefa.getNome())
-        cv.put("idade", tarefa.getDescr())
+        cv.put("descricao", tarefa.getDescr())
+        cv.put("status", tarefa.getStatus())
         this.banco.writableDatabase.update("tarefas", cv, where, wherep)
     }
 }

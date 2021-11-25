@@ -5,13 +5,14 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class BancoHelper(context: Context): SQLiteOpenHelper(context,"banco.db",null,1){
+class BancoHelper(context: Context): SQLiteOpenHelper(context,"bank.db",null,1){
     override fun onCreate(db: SQLiteDatabase?) {
         val sql = "create table if not exists tarefas (" +
                 " id integer primary key autoincrement," +
-                " imagem text"+
+                " imagem text,"+
                 " nome text," +
-                " descricao text)"
+                " descricao text," +
+                " status text)"
         db?.execSQL(sql)
     }
 
